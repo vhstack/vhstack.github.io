@@ -41,6 +41,9 @@
       line-height: 1.6;
       color: var(--text);
       background-color: var(--bg);
+      /* Komposition auf hohen Viewports vertikal zentrieren */
+      min-height: 100vh;
+      display: flex;
     }
     a { text-decoration: none; color: var(--peach); }
     a:hover { text-decoration: underline; }
@@ -49,31 +52,32 @@
     /* Container */
     .container {
       max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
+      width: 100%;
+      margin: auto;
+      padding: clamp(0.75rem, 2vh, 1.5rem) 1rem;
     }
 
     /* Header */
     header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: clamp(1rem, 2.5vh, 2rem);
     }
     .avatar {
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid var(--overlay);
-      margin: 0 auto 1rem;
+      border: 3px solid var(--overlay);
+      margin: 0 auto 0.75rem;
     }
     .avatar img { width: 100%; height: auto; }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
       color: var(--text);
     }
     p.lead {
-      font-size: 1.125rem;
+      font-size: 1.05rem;
       color: var(--subtext);
       max-width: 700px;
       margin: 0.5rem auto 0;
@@ -81,7 +85,7 @@
 
     /* Projects Section */
     .projects h2 {
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin-bottom: 1rem;
       text-align: center;
       color: var(--text);
@@ -95,7 +99,7 @@
       background: var(--surface0);
       border-radius: 1rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      padding: 1.5rem;
+      padding: 1.25rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .card:hover {
@@ -117,15 +121,95 @@
     }
     .card p {
       color: var(--subtext);
-      font-size: 0.95rem;
-      line-height: 1.4;
+      font-size: 0.9rem;
+      line-height: 1.45;
     }
+
+    /* Quickstart */
+    .quickstart {
+      text-align: center;
+      margin-top: clamp(1.25rem, 3vh, 2.5rem);
+    }
+    .qs-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--peach);
+      margin-bottom: 0.5rem;
+    }
+    .quickstart p {
+      color: var(--subtext);
+    }
+    .qs-link {
+      display: inline-block;
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+    }
+    .cmdbox {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: fit-content;
+      max-width: 100%;
+      margin: 1rem auto;
+      background: var(--crust);
+      border: 1px solid var(--overlay);
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+      text-align: left;
+    }
+    .cmd-prompt {
+      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.95rem;
+      color: var(--peach);
+      user-select: none;
+    }
+    .cmd-scroll {
+      overflow-x: auto;
+      scrollbar-width: none;        /* Firefox */
+    }
+    .cmd-scroll::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+    @media (max-width: 480px) {
+      .cmdbox code, .cmd-prompt { font-size: 0.85rem; }
+    }
+    .cmdbox code {
+      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.95rem;
+      color: var(--green);
+      white-space: pre;
+    }
+    .copy-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      background: transparent;
+      color: var(--subtext);
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .copy-btn:hover {
+      background: var(--surface1);
+      color: var(--peach);
+    }
+    .copy-btn .icon-check { display: none; }
+    .copy-btn.copied { color: var(--green); }
+    .copy-btn.copied:hover { background: transparent; }
+    .copy-btn.copied .icon-copy { display: none; }
+    .copy-btn.copied .icon-check { display: inline; }
 
     /* Footer */
     footer {
       text-align: center;
-      margin-top: 4rem;
+      margin-top: clamp(1rem, 2.5vh, 2rem);
       font-size: 0.875rem;
+      font-style: italic;
       color: var(--subtext);
     }
   </style>
@@ -164,9 +248,49 @@
       </div>
     </section>
 
+    <section class="quickstart">
+      <p class="qs-label">Quick Start</p>
+      <p>One command installs the complete vhstack environment (prompt, Tmux, Neovim) on your server:</p>
+      <div class="cmdbox">
+        <span class="cmd-prompt" aria-hidden="true">$</span>
+        <div class="cmd-scroll"><code id="install-cmd">curl -sL https://raw.githubusercontent.com/vhstack/vhstack/main/install.sh | bash</code></div>
+        <button class="copy-btn" type="button" aria-label="Copy command to clipboard" title="Copy to clipboard">
+          <svg class="icon-copy" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+      <a class="qs-link" href="https://github.com/vhstack/vhstack/blob/main/INSTALL.en.md" target="_blank" rel="noopener">Installation guide &rarr;</a>
+    </section>
+
     <footer>
       <p>&ldquo;The code we write is an expression of ourselves—make it as individual as you are.&rdquo;</p>
     </footer>
   </div>
+
+  <script>
+    document.querySelector('.copy-btn').addEventListener('click', function () {
+      var btn = this;
+      var cmd = document.getElementById('install-cmd').textContent;
+      function done() {
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.classList.remove('copied');
+        }, 1500);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cmd).then(done);
+      } else {
+        /* Fallback for older browsers */
+        var ta = document.createElement('textarea');
+        ta.value = cmd;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  </script>
 </body>
 </html>
