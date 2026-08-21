@@ -63,8 +63,8 @@
       margin-bottom: clamp(1rem, 2.5vh, 2rem);
     }
     .avatar {
-      width: 80px;
-      height: 80px;
+      width: 104px;
+      height: 104px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid var(--overlay);
@@ -83,12 +83,15 @@
       margin: 0.5rem auto 0;
     }
 
-    /* Projects Section */
-    .projects h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+    /* Sektions-Label (Eyebrow) */
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
       text-align: center;
-      color: var(--text);
+      color: var(--peach);
+      margin-bottom: 0.9rem;
     }
     .grid {
       display: grid;
@@ -129,14 +132,6 @@
     .quickstart {
       text-align: center;
       margin-top: clamp(1.25rem, 3vh, 2.5rem);
-    }
-    .qs-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--peach);
-      margin-bottom: 0.5rem;
     }
     .quickstart p {
       color: var(--subtext);
@@ -227,7 +222,7 @@
     </header>
 
     <section class="projects">
-      <h2>🖥️ Terminal Tools</h2>
+      <h2 class="section-label">Terminal Tools</h2>
       <div class="grid">
 
         <article class="card">
@@ -249,7 +244,7 @@
     </section>
 
     <section class="quickstart">
-      <p class="qs-label">Quick Start</p>
+      <h2 class="section-label">Quick Start</h2>
       <p>One command installs the complete vhstack environment (prompt, Tmux, Neovim) on your server:</p>
       <div class="cmdbox">
         <span class="cmd-prompt" aria-hidden="true">$</span>
