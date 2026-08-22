@@ -141,6 +141,18 @@
       margin-top: 0.25rem;
       font-size: 0.9rem;
     }
+    .card-version {
+      vertical-align: middle;
+      margin-left: 0.5rem;
+    }
+    .stack-version {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .stack-version img {
+      vertical-align: middle;
+    }
     .cmdbox {
       display: flex;
       align-items: center;
@@ -226,17 +238,17 @@
       <div class="grid">
 
         <article class="card">
-          <h3><img src="https://cdn.simpleicons.org/neovim/8aadf4" alt="Neovim icon" class="card-icon"/> <a href="https://github.com/vhstack/nvimpp" target="_blank" rel="noopener">nvimpp</a></h3>
+          <h3><img src="https://cdn.simpleicons.org/neovim/8aadf4" alt="Neovim icon" class="card-icon"/> <a href="https://github.com/vhstack/nvimpp" target="_blank" rel="noopener">nvimpp</a><img src="https://img.shields.io/github/v/tag/vhstack/nvimpp?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square" alt="nvimpp version" class="card-version"/></h3>
           <p><strong>Your Neovim setup:</strong> A fast, modular, productivity-oriented configuration that transforms NeoVim into a modern, flexible development tool.</p>
         </article>
 
         <article class="card">
-          <h3><img src="https://cdn.simpleicons.org/tmux/8aadf4" alt="Tmux icon" class="card-icon"/> <a href="https://github.com/vhstack/tmuxpp" target="_blank" rel="noopener">tmuxpp</a></h3>
+          <h3><img src="https://cdn.simpleicons.org/tmux/8aadf4" alt="Tmux icon" class="card-icon"/> <a href="https://github.com/vhstack/tmuxpp" target="_blank" rel="noopener">tmuxpp</a><img src="https://img.shields.io/github/v/tag/vhstack/tmuxpp?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square" alt="tmuxpp version" class="card-version"/></h3>
           <p><strong>Terminal sessions with Tmux, perfectly organized:</strong> Optimized keybindings and smart integrations that make your terminal sessions more efficient and well-structured.</p>
         </article>
 
         <article class="card">
-          <h3><img src="https://cdn.simpleicons.org/iterm2/8aadf4" alt="Bash icon" class="card-icon"/> <a href="https://github.com/vhstack/termpp" target="_blank" rel="noopener">termpp</a></h3>
+          <h3><img src="https://cdn.simpleicons.org/iterm2/8aadf4" alt="Bash icon" class="card-icon"/> <a href="https://github.com/vhstack/termpp" target="_blank" rel="noopener">termpp</a><img src="https://img.shields.io/github/v/tag/vhstack/termpp?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square" alt="termpp version" class="card-version"/></h3>
           <p><strong>Personalized terminal environment:</strong> A tailor-made setup that combines colors, fonts, and tools seamlessly to customize your terminal experience to your liking.</p>
         </article>
 
@@ -246,6 +258,12 @@
     <section class="quickstart">
       <h2 class="section-label">Quick Start</h2>
       <p>One command installs the complete vhstack environment (prompt, Tmux, Neovim) on your server:</p>
+      <p class="stack-version">Stack version
+        <a href="https://github.com/vhstack/vhstack/tags" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/github/v/tag/vhstack/vhstack?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square"
+               alt="vhstack version"/>
+        </a>
+      </p>
       <div class="cmdbox">
         <span class="cmd-prompt" aria-hidden="true">$</span>
         <div class="cmd-scroll"><code id="install-cmd">curl -sL https://raw.githubusercontent.com/vhstack/vhstack/main/install.sh | bash</code></div>
