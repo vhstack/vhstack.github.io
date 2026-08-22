@@ -17,6 +17,11 @@
 
   <link rel="canonical" href="https://vhstack.github.io/">
   <link rel="icon" href="https://github.com/vhstack.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
   <style>
     /* Catppuccin Mocha Palette */
     :root {
@@ -32,6 +37,8 @@
       --blue: #8aadf4;
       --green: #a6e3a1;
       --red: #f38ba8;
+      /* Cascadia gewinnt, wo installiert; JetBrains Mono (Webfont) für alle anderen */
+      --font-mono: 'Cascadia Code', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     }
     /* Base Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -72,7 +79,7 @@
     }
     .avatar img { width: 100%; height: auto; }
     h1 {
-      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 2rem;
       margin-bottom: 0.25rem;
       color: var(--text);
@@ -160,7 +167,7 @@
     }
     /* Versions-Pill (per JS aus VERSION-Datei befüllt) */
     .version {
-      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 500;
       color: var(--blue);
@@ -199,7 +206,7 @@
       text-align: left;
     }
     .cmd-prompt {
-      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 0.95rem;
       color: var(--peach);
       user-select: none;
@@ -213,7 +220,7 @@
       .cmdbox code, .cmd-prompt { font-size: 0.85rem; }
     }
     .cmdbox code {
-      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-family: var(--font-mono);
       font-size: 0.95rem;
       color: var(--green);
       white-space: pre;
