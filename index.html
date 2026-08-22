@@ -72,9 +72,26 @@
     }
     .avatar img { width: 100%; height: auto; }
     h1 {
+      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
       font-size: 2rem;
       margin-bottom: 0.25rem;
       color: var(--text);
+    }
+    /* Blinkender Terminal-Cursor hinter dem Namen */
+    h1::after {
+      content: "";
+      display: inline-block;
+      width: 0.55ch;
+      height: 1.05em;
+      margin-left: 0.2ch;
+      background: var(--peach);
+      opacity: 0.75;
+      vertical-align: text-bottom;
+      animation: cursor-blink 1.4s steps(1) infinite;
+    }
+    @keyframes cursor-blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      h1::after { animation: none; }
     }
     p.lead {
       font-size: 1.05rem;
@@ -141,17 +158,31 @@
       margin-top: 0.25rem;
       font-size: 0.9rem;
     }
-    .card-version {
-      vertical-align: middle;
-      margin-left: 0.5rem;
+    /* Versions-Pill (per JS aus VERSION-Datei befüllt) */
+    .version {
+      font-family: 'Cascadia Code', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--blue);
+      background: var(--surface1);
+      border: 1px solid var(--overlay);
+      border-radius: 999px;
+      padding: 0.1rem 0.55rem;
+      line-height: 1.4;
+      white-space: nowrap;
     }
+    .version:empty { display: none; }
+    .card h3 .version { margin-left: 0.6rem; }
     .stack-version {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
     }
-    .stack-version img {
-      vertical-align: middle;
+    .stack-version a:hover { text-decoration: none; }
+    .stack-version a:hover .version {
+      color: var(--peach);
+      border-color: var(--peach);
     }
     .cmdbox {
       display: flex;
@@ -238,17 +269,17 @@
       <div class="grid">
 
         <article class="card">
-          <h3><img src="https://cdn.simpleicons.org/neovim/8aadf4" alt="Neovim icon" class="card-icon"/> <a href="https://github.com/vhstack/nvimpp" target="_blank" rel="noopener">nvimpp</a><img src="https://img.shields.io/github/v/tag/vhstack/nvimpp?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square" alt="nvimpp version" class="card-version"/></h3>
+          <h3><img src="https://cdn.simpleicons.org/neovim/8aadf4" alt="Neovim icon" class="card-icon"/> <a href="https://github.com/vhstack/nvimpp/blob/main/README.en.md" target="_blank" rel="noopener">nvimpp</a><span class="version" data-repo="nvimpp"></span></h3>
           <p><strong>Your Neovim setup:</strong> A fast, modular, productivity-oriented configuration that transforms NeoVim into a modern, flexible development tool.</p>
         </article>
 
         <article class="card">
-          <h3><img src="https://cdn.simpleicons.org/tmux/8aadf4" alt="Tmux icon" class="card-icon"/> <a href="https://github.com/vhstack/tmuxpp" target="_blank" rel="noopener">tmuxpp</a><img src="https://img.shields.io/github/v/tag/vhstack/tmuxpp?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square" alt="tmuxpp version" class="card-version"/></h3>
+          <h3><img src="https://cdn.simpleicons.org/tmux/8aadf4" alt="Tmux icon" class="card-icon"/> <a href="https://github.com/vhstack/tmuxpp/blob/main/README.en.md" target="_blank" rel="noopener">tmuxpp</a><span class="version" data-repo="tmuxpp"></span></h3>
           <p><strong>Terminal sessions with Tmux, perfectly organized:</strong> Optimized keybindings and smart integrations that make your terminal sessions more efficient and well-structured.</p>
         </article>
 
         <article class="card">
-          <h3><img src="https://cdn.simpleicons.org/iterm2/8aadf4" alt="Bash icon" class="card-icon"/> <a href="https://github.com/vhstack/termpp" target="_blank" rel="noopener">termpp</a><img src="https://img.shields.io/github/v/tag/vhstack/termpp?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square" alt="termpp version" class="card-version"/></h3>
+          <h3><img src="https://cdn.simpleicons.org/iterm2/8aadf4" alt="Bash icon" class="card-icon"/> <a href="https://github.com/vhstack/termpp/blob/main/README.en.md" target="_blank" rel="noopener">termpp</a><span class="version" data-repo="termpp"></span></h3>
           <p><strong>Personalized terminal environment:</strong> A tailor-made setup that combines colors, fonts, and tools seamlessly to customize your terminal experience to your liking.</p>
         </article>
 
@@ -259,10 +290,7 @@
       <h2 class="section-label">Quick Start</h2>
       <p>One command installs the complete vhstack environment (prompt, Tmux, Neovim) on your server:</p>
       <p class="stack-version">Stack version
-        <a href="https://github.com/vhstack/vhstack/tags" target="_blank" rel="noopener">
-          <img src="https://img.shields.io/github/v/tag/vhstack/vhstack?label=&amp;sort=semver&amp;color=8aadf4&amp;style=flat-square"
-               alt="vhstack version"/>
-        </a>
+        <a href="https://github.com/vhstack/vhstack/tags" target="_blank" rel="noopener"><span class="version" data-repo="vhstack"></span></a>
       </p>
       <div class="cmdbox">
         <span class="cmd-prompt" aria-hidden="true">$</span>
@@ -272,7 +300,7 @@
           <svg class="icon-check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
       </div>
-      <a class="qs-link" href="https://github.com/vhstack/vhstack/blob/main/INSTALL.en.md" target="_blank" rel="noopener">Installation guide &rarr;</a>
+      <a class="qs-link" href="https://github.com/vhstack/vhstack/blob/main/README.en.md" target="_blank" rel="noopener">Learn more &rarr;</a>
     </section>
 
     <footer>
@@ -281,6 +309,17 @@
   </div>
 
   <script>
+    /* Versionsnummern aus den VERSION-Dateien der Repos laden */
+    document.querySelectorAll('.version[data-repo]').forEach(function (el) {
+      fetch('https://raw.githubusercontent.com/vhstack/' + el.dataset.repo + '/main/VERSION')
+        .then(function (res) { return res.ok ? res.text() : ''; })
+        .then(function (v) {
+          v = v.trim();
+          if (v) el.textContent = v.charAt(0) === 'v' ? v : 'v' + v;
+        })
+        .catch(function () { /* Pill bleibt einfach ausgeblendet */ });
+    });
+
     document.querySelector('.copy-btn').addEventListener('click', function () {
       var btn = this;
       var cmd = document.getElementById('install-cmd').textContent;
